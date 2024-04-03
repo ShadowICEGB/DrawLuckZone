@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+/* Custom CSS */
+html, body {@apply h-full overflow-hidden; }
+::selection {
+	background: rgba(var(--color-secondary-300) / 1);
+	color: #fff;
+}
+main {
+	@apply relative mx-auto my-6 px-0;
+	max-width: 1800px;
+	width: calc(100% - 2rem);
+}
+.container { max-width: 1800px;}
