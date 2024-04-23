@@ -3,7 +3,6 @@ import type { Config } from 'tailwindcss'
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
-import { pickUp_theme } from './src/pickUp_theme'
 
 export default {
 	darkMode: 'class',
@@ -15,11 +14,7 @@ export default {
 		forms,
 		typography,
 		skeleton({
-			themes: {
-				custom: [
-					pickUp_theme,
-				],
-			},
+			themes: {},
 		}),
 	],
 } satisfies Config;

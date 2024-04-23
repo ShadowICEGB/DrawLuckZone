@@ -4,9 +4,29 @@
 @tailwind variants;
 
 /* Custom CSS */
-html, body {@apply h-full overflow-hidden; }
+:root {
+	--primaryBg: #0d0f1b;
+	--secondaryBg: #212b3b;
+	--textColor: #f2f9ff;
+	--textColorBrighter: #e7e8ff;
+	--textColorDarker: #909bad;
+	--accentColor: #7a5fea;
+	--success: #3ed477;
+	--warning: #f7b955;
+	--error: #ec3e40;
+	--accentPink: #FF69B4;
+	--accentPurple: #8A2BE2;
+	--accentBlue: #1E90FF;
+	--shadowAccent: #7d7ea7;
+	--ghostyText: #9088d9;
+	--ghostyBg: #3c387a;
+}
+
+html, body {@apply h-full overflow-hidden select-none relative; background: var(--primaryBg); font-family: Montserrat, sans-serif; }
+html, body, p, span, i, hr, a {color: var(--textColorBrighter);}
+:where(.sidebar) p, span, a, i, hr {color: var(--textColorDarker);}
 ::selection {
-	background: rgba(var(--color-secondary-300) / 1);
+	background: var(--accentColor);
 	color: #fff;
 }
 main {

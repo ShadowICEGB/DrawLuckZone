@@ -4,7 +4,7 @@
 
 <main>
     <div class="container">
-        <p>Homepage</p>
+        <p>Achievements</p>
     </div>
 </main>
 

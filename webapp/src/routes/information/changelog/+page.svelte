@@ -4,7 +4,7 @@
 
 <main>
     <div class="container">
-        <h1>Profile</h1>
+        <h1>Changelog</h1>
     </div>
 </main>
 

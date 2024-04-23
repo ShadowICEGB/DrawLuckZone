@@ -4,10 +4,10 @@
 
 <main>
     <div class="container">
-        <h1>Persönliche Statistiken</h1>
+        <p>Leaderboard</p>
     </div>
 </main>
 
 <style class="postcss">
-    
+
 </style>

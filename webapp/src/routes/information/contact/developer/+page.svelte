@@ -4,10 +4,10 @@
 
 <main>
     <div class="container">
-        <h1>Highscoress von allen</h1>
+        <p>Developer</p>
     </div>
 </main>
 
-<style class="postcss">
-    
+<style lang="postcss">
+
 </style>
