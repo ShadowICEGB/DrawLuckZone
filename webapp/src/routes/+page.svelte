@@ -3,11 +3,11 @@
 </script>
 
 <main>
-	<div class="container">
-		<p>Homepage</p>
-	</div>
+    <div class="container">
+        <p>Homepage</p>
+    </div>
 </main>
 
-<style lang="postcss">
-	
+<style class="postcss">
+
 </style>

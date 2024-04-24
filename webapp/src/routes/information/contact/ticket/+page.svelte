@@ -4,7 +4,7 @@
 
 <main>
     <div class="container">
-        <h1>Profile</h1>
+        <h1>Hilfe | Kontakt | Impressum</h1>
     </div>
 </main>
 

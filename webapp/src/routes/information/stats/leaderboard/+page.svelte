@@ -4,10 +4,10 @@
 
 <main>
     <div class="container">
-        <h1>Hilfe | Kontakt | Impressum</h1>
+        <p>Leaderboard</p>
     </div>
 </main>
 
 <style class="postcss">
-    
+
 </style>

@@ -4,7 +4,7 @@
 
 <main>
     <div class="container">
-        <h1>Highscoress von allen</h1>
+        <h1>Profile</h1>
     </div>
 </main>
 
