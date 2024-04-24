@@ -40,7 +40,7 @@
 <div class="headbar mt-2 relative rounded-2xl">
     <AppBar border="rounded-2xl" padding="" background="">
         <div class="navElement flex justify-between items-center px-6 w-screen">
-            <div class="trail w-1/2 relative left-72 h-20 flex items-center rounded-l-2xl">
+            <div class="trail w-1/2 relative h-20 flex items-center rounded-l-2xl">
                 <div class="flex items-center">
                     <button class="lg:hidden" on:click={openSidebar}>
                         <span>
