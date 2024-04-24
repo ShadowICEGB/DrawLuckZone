@@ -7,8 +7,9 @@
 </script>
 
 <main>
-    <div class="container">
-        <h1 class="text-center mb-20" style="font-size: clamp(30px, 4vw, 60px);">Changelog</h1>
+    <div class="container relative">
+        <span class="line absolute top-32 left-1/2 w-1 h-4/5 -z-10" style="background-color: var(--secondaryBg);"></span>
+        <h1 class="text-center mb-20 tracking-wider" style="font-size: clamp(30px, 4vw, 60px);">Changelog</h1>
         {#each contentArray as content}
         <div class="box flex flex-col mt-10 p-4 rounded-xl">
             <div class="headline flex justify-between items-center mb-5">
