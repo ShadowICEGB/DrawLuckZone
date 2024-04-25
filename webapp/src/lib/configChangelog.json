@@ -21,7 +21,7 @@
         "version": "V 0.0.1",
         "role": "Admin",
         "content": "release",
-        "status": "new",
+        "status": "done",
         "headline": "Changelog Route hinzugefügt 🔥",
         "textContent": "Changelog Route wurde erstellt. Hier werden alle Änderungen und Updates festgehalten.",
         "tags": { 
@@ -30,6 +30,22 @@
             "Beta": "Beta",
             "Enhancement": "Enhancement",
             "Optimization": "Optimization"
+        }
+    },
+    {
+        "dev": "Noah Trier",
+        "img": "",
+        "version": "V 0.0.2",
+        "role": "Admin",
+        "content": "beta",
+        "status": "new",
+        "headline": "Game Route hinzugefügt 🎮",
+        "textContent": "Die erste Version des Games wurde hinzugefügt. Es ist teilweise spielbar und wird stetig erweitert. Es gibt noch einige Bugs und Optimierungen die gemacht werden müssen.",
+        "tags": { 
+            "MVP": "MVP",
+            "Ready": "Not Ready",
+            "Beta": "Alpha",
+            "Security": "To Secure"
         }
     }
 ]
