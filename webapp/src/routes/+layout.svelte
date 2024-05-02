@@ -4,6 +4,18 @@
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
 	import Headbar from '$lib/components/navigation/Headbar.svelte';
 
+	// Loading Animiation
+	import Loading from '$lib/components/animations/loadingScreen/Loading.svelte';
+	let timer = 0;
+	// Display Game Start Countdown
+    const firstGameStart = () => {
+        const countdown = setInterval(() => {
+            if (timer < 100) {timer++;} 
+            else {clearInterval(countdown);}
+        }, 10);
+    }
+	firstGameStart();
+
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
 	import 'highlight.js/styles/github-dark.css';
@@ -33,6 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </svelte:head>
 
+<Loading {timer}/>
 <AppShell>
 	<svelte:fragment slot="header">
 		<Headbar />

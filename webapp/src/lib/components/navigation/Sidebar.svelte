@@ -26,7 +26,7 @@
     }
 
     // Toggle Active
-    let activeIndex: boolean[] = [false, false, false, false, false, false, false, false, false];
+    let activeIndex: boolean[] = [false, false, false, false, false, false, false, false, false, false];
     const toggleActive = (index: number) => {
         if (activeIndex[index]) {activeIndex[index] = false;} 
         else {
@@ -41,31 +41,32 @@
     const checkHomepageActive = () => {
         // Check if the current route is /
         let currentURL: URL = new URL(window.location.href);
-        if (currentURL.pathname === '/') {activeIndex = [true, false, false];}
-        else if (currentURL.pathname === '/game') {activeIndex = [false, true, false];}
-        else if (currentURL.pathname === '/information/stats/leaderboard') {activeIndex = [false, false, true];}
+        if (currentURL.pathname === '/') {activeIndex = [true, false, false, false];}
+        else if (currentURL.pathname === '/game') {activeIndex = [false, true, false, false];}
+        else if (currentURL.pathname === '/information/stats/leaderboard') {activeIndex = [false, false, true, false];}
+        else if (currentURL.pathname === '/information/guide') {activeIndex = [false, false, false, true];}
         else if (currentURL.pathname === '/information/stats/achievements') {
-            activeIndex = [false, false, false, true];
-            indexSubList = [true, false, false];
-        }
-        else if (currentURL.pathname === '/information/profile') {
             activeIndex = [false, false, false, false, true];
             indexSubList = [true, false, false];
         }
-        else if (currentURL.pathname === '/information/changelog') {
+        else if (currentURL.pathname === '/information/profile') {
             activeIndex = [false, false, false, false, false, true];
-            indexSubList = [false, true, false];
+            indexSubList = [true, false, false];
         }
-        else if (currentURL.pathname === '/information/contact/developer') {
+        else if (currentURL.pathname === '/information/changelog') {
             activeIndex = [false, false, false, false, false, false, true];
             indexSubList = [false, true, false];
         }
-        else if (currentURL.pathname === '/information/contact') {
+        else if (currentURL.pathname === '/information/contact/developer') {
             activeIndex = [false, false, false, false, false, false, false, true];
+            indexSubList = [false, true, false];
+        }
+        else if (currentURL.pathname === '/information/contact') {
+            activeIndex = [false, false, false, false, false, false, false, false, true];
             indexSubList = [false, false, true];
         }
         else if (currentURL.pathname === '/information/contact/impressum') {
-            activeIndex = [false, false, false, false, false, false, false, false, true];
+            activeIndex = [false, false, false, false, false, false, false, false, false, true];
             indexSubList = [false, false, true];
         }
     }
@@ -104,6 +105,13 @@
                         <a href="/information/stats/leaderboard" class="w-full h-full pl-3 py-2 flex items-center">
                             <i class="fa-regular fa-clipboard w-7" style="font-size: 20px;margin-bottom: 2px;" draggable="false"></i>
                             <span>Leaderboard</span>
+                        </a>
+                    </li>
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[3]} on:click={() => toggleActive(3)}>
+                        <a href="/information/guide" class="w-full h-full pl-3 py-2 flex items-center">
+                            <i class="fa-regular fa-paper-plane w-7" style="font-size: 20px;margin-bottom: 2px;" draggable="false"></i>
+                            <span>Guide</span>
                         </a>
                     </li>
                 </ul>
