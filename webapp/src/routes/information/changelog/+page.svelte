@@ -1,9 +1,42 @@
 <script lang="ts">
     import user from "$lib/images/placeholder/user.png";
     import type { ContentType } from "$lib/types";
-    import json from "$lib/configChangeLog.json";
     
-    let contentArray: ContentType[] = json.reverse();
+    let contentArray: ContentType[] = [
+        {
+            "dev": "Noah Trier",
+            "img": "",
+            "version": "V 0.0.0",
+            "role": "Admin",
+            "content": "release",
+            "status": "done",
+            "headline": "Grundgerüst 🛠️",
+            "textContent": "Grundgerüst, Globale Styles, Frameworks und diverse Projekt Einstellungen wurden erstellt und oder eingebunde.",
+            "tags": { 
+                "MVP": "MVP",
+                "Ready": "Ready",
+                "Beta": "Beta",
+                "Optimization": "Optimization"
+            }
+        },
+        {
+            "dev": "Noah Trier",
+            "img": "",
+            "version": "V 0.0.1",
+            "role": "Admin",
+            "content": "release",
+            "status": "new",
+            "headline": "Changelog Route hinzugefügt 🔥",
+            "textContent": "Changelog Route wurde erstellt. Hier werden alle Änderungen und Updates festgehalten.",
+            "tags": { 
+                "MVP": "MVP",
+                "Ready": "Ready",
+                "Beta": "Beta",
+                "Enhancement": "Enhancement",
+                "Optimization": "Optimization"
+            }
+        }
+    ].reverse();
 </script>
 
 <main>
