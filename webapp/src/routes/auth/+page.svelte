@@ -4,7 +4,7 @@
 
 <main>
     <div class="container">
-        <h1>Auth</h1>
+        <h1 class="text-center mb-20 tracking-wider" style="font-size: clamp(30px, 4vw, 50px);">Auth</h1>
     </div>
 </main>
 
