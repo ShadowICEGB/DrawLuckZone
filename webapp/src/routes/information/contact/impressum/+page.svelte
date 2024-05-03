@@ -7,7 +7,7 @@
 
 <main>
     <div class="container">
-        <h1 class="uppercase tracking-widest font-bold" style="font-size: clamp(30px,4vw,40px);">Impressum</h1>
+        <h1 class="text-center mb-20 tracking-wider" style="font-size: clamp(30px, 4vw, 50px);">Impressum</h1>
         <section class="mt-20">
             <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h2>
             <p>
@@ -25,7 +25,7 @@
             </p>
             <p>
                 Für Fragen oder Anregungen können Sie uns unter der folgenden E-Mail-Adresse
-                erreichen: <a href="mailto:spinluckzone@gmail.de" class="italic" style="color: var(--accentColor);">spinluckzone@gmail.de</a>
+                erreichen: <a href="mailto:spinluckzone@gmail.com" class="italic" style="color: var(--accentColor);">spinluckzone@gmail.com</a>
             </p>
         </section>
         <section>
@@ -96,7 +96,6 @@
 
 <style lang="css">
     section { margin-bottom: 40px; }
-    h1, h2 { color: var(--accentColor); }
-    h2 { margin-bottom: 5px; }
+    h2 { color: var(--accentColor); margin-bottom: 5px; }
     p { line-height: 1.6;color: var(--textColorDarker); }
 </style>
