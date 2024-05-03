@@ -4,19 +4,19 @@
     
     let contentArray: ContentType[] = [
         {
-            "dev": "Noah Trier",
-            "img": "",
-            "version": "V 0.0.0",
-            "role": "Admin",
-            "content": "release",
-            "status": "done",
+            "dev": "Noah Trier", // devname
+            "img": "", // devimg
+            "version": "V 0.0.0", // application version
+            "role": "Admin", // devrole
+            "content": "release", // release, beta, alpha, early access, hotfix, security
+            "status": "done", // done, new
             "headline": "Grundgerüst 🛠️",
             "textContent": "Grundgerüst, Globale Styles, Frameworks und diverse Projekt Einstellungen wurden erstellt und oder eingebunde.",
             "tags": { 
-                "MVP": "MVP",
-                "Ready": "Ready",
-                "Beta": "Beta",
-                "Optimization": "Optimization"
+                "MVP": "MVP", // MVP
+                "Ready": "Ready", // Ready
+                "Beta": "Beta", // Beta, Alpha, Release
+                "Optimization": "Optimization" // 
             }
         },
         {
@@ -25,7 +25,7 @@
             "version": "V 0.0.1",
             "role": "Admin",
             "content": "release",
-            "status": "new",
+            "status": "done",
             "headline": "Changelog Route hinzugefügt 🔥",
             "textContent": "Changelog Route wurde erstellt. Hier werden alle Änderungen und Updates festgehalten.",
             "tags": { 
@@ -35,13 +35,47 @@
                 "Enhancement": "Enhancement",
                 "Optimization": "Optimization"
             }
+        },
+        {
+            "dev": "Noah Trier",
+            "img": "",
+            "version": "V 0.0.2",
+            "role": "Admin",
+            "content": "release",
+            "status": "done",
+            "headline": "Homepage Layout und Design 🏠",
+            "textContent": "Die Homepage wurde mit Inhalten gefüllt und designed. Ab sofort ist die Homepage nicht mehr leer.",
+            "tags": { 
+                "MVP": "MVP",
+                "Ready": "Ready",
+                "Beta": "Release",
+                "Optimization": "Optimization"
+            }
+        },
+        {
+            "dev": "Noah Trier",
+            "img": "",
+            "version": "V 0.0.3",
+            "role": "Admin",
+            "content": "hotfix",
+            "status": "done",
+            "headline": "Game - Total Points 🛠️",
+            "textContent": "Ein Bug wurde behoben. Dieser Bug sorgte dafür, dass die Gesamtpunktzahl falsch berechnet wurde. Dieser Bug wurde behoben und es werden nun die Punkte korrekt berechnet.",
+            "tags": { 
+                "MVP": "MVP",
+                "Ready": "Ready",
+                "Beta": "Release",
+                "Enhancement": "Enhancement",
+                "Security": "Secure",
+                "Optimization": "Optimization"
+            }
         }
     ].reverse();
 </script>
 
 <main>
     <div class="container relative">
-        <span class="line absolute top-32 left-1/2 w-1 h-4/5 -z-10" style="background-color: var(--secondaryBg);"></span>
+        <span class="line absolute top-32 left-1/2 w-1 h-4/5 -z-10 invisible lg:visible" style="background-color: var(--secondaryBg);"></span>
         <h1 class="text-center mb-20 tracking-wider" style="font-size: clamp(30px, 4vw, 60px);">Changelog</h1>
         {#each contentArray as content}
         <div class="box flex flex-col mt-10 p-4 rounded-xl">
@@ -50,12 +84,12 @@
                     <img src={user} alt="userIMG" class="w-12 h-12 mt-5" style="border-radius: 50%;">
                     <div class="txt flex items-center ml-3">
                         <h2 class="font-bold" style="font-size: 16px;">{content.dev}</h2>
-                        <p class="py-1 px-3 ml-3 rounded-xl" style="background-color: var(--ghostyBg);color: var(--ghostyText);">{content.role}</p>
+                        <p class="py-1 px-3 ml-1 rounded-xl lg:ml-3" style="background-color: var(--ghostyBg);color: var(--ghostyText);">{content.role}</p>
                     </div>
                 </div>
                 <div class="version flex items-center">
                     <h2 class="italic">{content.version}</h2>
-                    <p class="py-1 px-3 ml-5 rounded-xl" style="background-color: var(--ghostyBg);color: var(--ghostyText);">{content.content}</p>
+                    <p class="py-1 px-3 ml-2 rounded-xl lg:ml-5" style="background-color: var(--ghostyBg);color: var(--ghostyText);">{content.content}</p>
                 </div>
             </div>
             <div class="content p-4 rounded-xl" style="background-color: var(--secondaryBg);">
@@ -68,9 +102,9 @@
                 <p style="color: var(--textColorDarker);">
                     {content.textContent}
                 </p>
-                <div class="tags flex items-center mt-10">
+                <div class="tags flex items-center mt-10 flex-wrap">
                     {#each Object.keys(content.tags) as tag}
-                    <p class="px-3 ml-3 rounded-xl" style="background-color: var(--ghostyBg); color: var(--ghostyText); font-size:10px;">
+                    <p class="px-3 mt-2 mr-2 rounded-xl" style="background-color: var(--ghostyBg); color: var(--ghostyText); font-size:10px;">
                         {content.tags[(tag)]}
                     </p>
                     {/each}
