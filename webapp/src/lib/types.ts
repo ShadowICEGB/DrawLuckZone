@@ -21,3 +21,32 @@ export type ContentType = {
     textContent: string; // Text content of the changelog
     tags: {[TagType: string]: TagType[keyof TagType];}; // Tags of the changelog
 }
+
+
+/**
+ * 
+ */
+export type Stats = {
+    icon: string;
+    content: string;
+    displayHeader: string;
+}[]
+
+
+/**
+ * 
+ */
+export type TypePointsCriteria = {
+    1: number,
+    2: number,
+    3: number,
+    4: number, 
+    5: number, 
+    6: number, 
+    7: number, 
+    8: number,
+    9: number,
+    10: number, 
+    11: number, 
+    12: number
+}[]
