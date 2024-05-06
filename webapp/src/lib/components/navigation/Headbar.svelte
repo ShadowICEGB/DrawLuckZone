@@ -40,7 +40,7 @@
 <div class="headbar mt-2 relative rounded-2xl">
     <AppBar border="rounded-2xl" padding="" background="">
         <div class="navElement flex justify-between items-center px-6 w-screen">
-            <div class="trail w-1/2 relative h-20 flex items-center rounded-l-2xl">
+            <div class="trail w-1/2 relative h-16 flex items-center rounded-l-2xl">
                 <div class="flex items-center">
                     <button class="lg:hidden" on:click={openSidebar}>
                         <span>
@@ -53,7 +53,7 @@
                     </button>
                 </div>
             </div>
-            <div class="lead w-1/2 h-20 pr-1 flex items-center justify-end rounded-r-2xl">
+            <div class="lead w-1/2 pr-1 flex items-center justify-end rounded-r-2xl">
                 <div class="date rounded-2xl w-36 h-10 mr-5 flex items-center justify-center" style="background-color: var(--ghostyBg);">
                     <i class="fa-regular fa-calendar mr-3" style="color: var(--ghostyText);font-size:15px;"></i>
                     <p style="color: var(--ghostyText);font-size:15px;">{currentDate}</p>

@@ -1,20 +1,11 @@
 <script lang="ts">
-    // Import Components
-    import GameCountdown from '$lib/components/bars/countdown/GameCountdown.svelte';
     import { onMount } from 'svelte';
+    import { writable, type Writable } from 'svelte/store';
+    import { truncate } from '$lib/functions/truncate';
     import { get } from 'svelte/store';
 
-    // Import variable values from config file
-    import { points, pointsCriteria } from '$lib/config';
-
-    // Import all Typescript types
-    import type { Stats } from '$lib/types';
-
-    // Import Stores
-    import { cards } from '$lib/store';
-
-    // Import game functions
-    import { truncate } from '$lib/functions/truncate';
+    import NeededPoints from '$lib/components/bars/neededPoints/NeededPoints.svelte';
+    import GameCountdown from '$lib/components/bars/countdown/GameCountdown.svelte';
 
     // Import images
     import kleeblatt from '$lib/images/game/kleeblatt.png';
@@ -25,17 +16,39 @@
     import hufeisen from '$lib/images/game/hufeisen.png';
     import x from '$lib/images/game/x.png';
     import ziel from '$lib/images/game/ziel.png';
-    import logo from '$lib/images/logos/SpinLuckZone.png';
-
-
-
 
     // Array of all cards
     const cardImages: string[] = ["herz", "stern", "krone", "kleeblatt", "hufeisen", "mond"];
-    const criteriaPoints: { name: string; fulfilled: boolean; used: boolean }[] = pointsCriteria;
+    const pointsCriteria: { name: string; fulfilled: boolean; used: boolean }[] = [
+        { name: "🍀🍀🍀", fulfilled: false, used: false },
+        { name: "🌙🌙🌙", fulfilled: false, used: false },
+        { name: "❤️❤️❤️", fulfilled: false, used: false },
+        { name: "⭐⭐⭐", fulfilled: false, used: false },
+        { name: "👑👑👑", fulfilled: false, used: false },
+        { name: "🧲🧲🧲", fulfilled: false, used: false },
+        { name: "🃏", fulfilled: false, used: false },
+        { name: "⚡⚡", fulfilled: false, used: false },
+        { name: "⚡⚡⚡➕🔴🔴", fulfilled: false, used: false },
+        { name: "⚡🟥🔴🟢🔶", fulfilled: false, used: false },
+        { name: "⚡⚡⚡⚡", fulfilled: false, used: false },
+        { name: "⚡⚡⚡⚡⚡", fulfilled: false, used: false }
+    ];
 
     // Points per criteria
-    const pointsValue: any = points;
+    const points: any = {
+        1: 23000, // kleeblatt
+        2: 25000, // mond
+        3: 26000, // herz
+        4: 21000, // stern
+        5: 28000, // krone
+        6: 22000, // hufeisen
+        7: 5000, // joker
+        8: 10000, // 2er
+        9: 35000, // full house
+        10: 50000, // alle eimal
+        11: 80000, // 4er
+        12: 100000 // 5er
+    }; // 425000 in total
 
     // Gamestats
     let startGame: boolean = false; 
@@ -52,18 +65,9 @@
     let gameStartingCountdown: number = 7;
 
     // Cards
-    let cardsValue = $cards;
+    let cards: Writable<string[]> = writable(['⭐','⭐','⭐','⭐','⭐']);
     let countdownInterval: NodeJS.Timeout;
     let heldCards: boolean[] = [false, false, false, false, false];
-
-
-    $: playerStats = [
-        {icon: 'fa-regular fa-user',content: `${truncate('ShadowICE', 10)}`,displayHeader: 'Spielername'}, // Playername
-        {icon: 'fa-regular fa-star',content: '1875643',displayHeader: 'Highscore'}, // Current Highscore
-        {icon: 'fa-regular fa-clock',content: `${round}`,displayHeader: 'Runde'}, // Round
-        {icon: 'fa-regular fa-lightbulb',content: `${totalPoints}`,displayHeader: 'Punkte'}, // TotalPoints
-        {icon: 'fa-regular fa-flag',content: `${goalPoints}`,displayHeader: 'Benötigte Punkte'} // GoalPoints
-    ];
 
     // Display Game Start Countdown
     const firstGameStart = () => {
@@ -198,7 +202,7 @@
             heldCards = [false, false, false, false, false];
 
             // Add points
-            pointsPerRound += pointsValue[index + 1];
+            pointsPerRound += points[index + 1];
 
             // trigger new spin
             spin(0);
@@ -267,152 +271,100 @@
 </script>
 
 <main>
-    <div class="container -mt-8">
-        <h1 class="text-center mb-5 tracking-wider flex items-center justify-center flex-wrap" style="font-size: clamp(30px, 4vw, 50px);">
-            <img src="{logo}" alt="logo" class="w-20">
-            DrawLuckZone
-            <img src="{logo}" alt="logo" class="w-20">
-        </h1>
-        <div class="gameBoard">
-            {#if gameFinished}
-            <div class="finished">
-                <h3>Game finished</h3>
-                <h4>Total points: {totalPoints}</h4>
-            </div>
-            {:else}
+    <div class="container w-full">
+        {#if gameFinished}
+        <div class="finished">
+            <h3>Game finished</h3>
+            <h4>Total points: {totalPoints}</h4>
+        </div>
+        {:else}
+        <div class="game-board relative top-24 flex flex-col items-center justify-between flex-wrap lg:flex-row">
             {#if isGameStarting}
-            <div class="countdown absolute w-full h-96 z-50 flex justify-center items-center" style="background-color: var(--primaryBg);">
-                <div class="countdown-inner flex flex-col items-center justify-between mt-10">
+            <div class="countdown absolute w-full h-full z-50 flex justify-center items-center" style="background-color: var(--primaryBg);">
+                <div class="countdown-inner flex flex-col items-center justify-between mt-10 h-28">
                     <p class="font-bold tracking-widest uppercase" style="font-size: clamp(30px, 4vw, 44px);">Spiel startet in</p>
-                    <p class="font-bold italic mt-16" style="font-size: clamp(60px, 4vw, 100px);">{gameStartingCountdown}</p>
+                    <p class="font-bold italic" style="font-size: clamp(60px, 4vw, 100px);">{gameStartingCountdown}</p>
                 </div>
             </div>
             {:else}
-            <header>
-                <div class="timeline rounded-2xl flex flex-col justify-center items-center">
-                    <span class="relative flex justify-center items-center mb-2">
-                        Verbleibend: <span class="italic ml-2 mr-1">{timeLeft}</span> Sekunden
-                    </span>
-                    <div class="h-2 w-3/4 lg:w-1/2"><GameCountdown {timeLeft}/></div>
-                </div>
-                <div class="stats flex items-center justify-center flex-wrap mt-5">
-                    <div class="playerStats flex flex-row items-center flex-wrap">
-                    {#each playerStats as stat}
-                        <div class="stat flex flex-col">
-                            <span class="" style="font-size: clamp(10px,4vw,13px);">{stat.displayHeader}</span>
-                            <div class="item py-2 px-6 flex justify-center items-center mr-3 rounded-lg" style="background-color: var(--ghostyBg);">
-                                <i class="{stat.icon} mr-2" style="color: var(--ghostyText);"></i>
-                                <p style="color: var(--ghostyText);">{stat.content}</p>
-                            </div>
+            <div class="w-2/3">
+                <div class="stats flex items-center">
+                    <div class="flex flex-col h-24 justify-center">
+                        <button class="btnCustom h-1/2" on:click={stopGame}><span class="relative">Exit</span></button>
+                        <div class="btnCustom h-1/2 mt-1"><span class="relative select-none flex justify-center items-center" style="margin-top: 6px;">Round <span class="ml-1">{round}</span>/5</span></div>
+                    </div>
+                    <div class="w-3/4 h-24 mx-5">
+                        <div class="time-left overflow-hidden">
+                            <GameCountdown {timeLeft}/>
                         </div>
+                        <div class="goal-points overflow-hidden mt-1">
+                            <NeededPoints {goalPoints} {pointsPerRound}/>
+                        </div>
+                    </div>
+                    <div class="flex flex-col h-24 justify-center">
+                        <div class="playername btnCustom h-1/2 w-44 flex justify-center items-center"><span class="relative select-none">{truncate(playername,10)}</span></div>
+                        <div class="total-points btnCustom h-1/2 mt-1 flex justify-center items-center"><span class="relative select-none">{totalPoints}</span></div>
+                    </div>
+                </div>
+                <div class="cards my-5 flex items-center justify-center">
+                {#each $cards as card, index}
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
+                    <div class="boxCard relative w-full my-2 rounded-md h-80 cursor-pointer bg-black lg:w-1/3 lg:mx-2" class:hold={heldCards[index]} on:click={() => toggleHold(index)}>
+                        <div class="content w-full h-full flex items-center justify-center select-none pb-5" class:spinning={spinning}>
+                            {#if card === 'herz'}
+                            <img src={herz} alt="herz" class="content w-44 h-44 object-cover" draggable="false" style="filter: drop-shadow(0px 0px 15px #d60314);">
+                            {:else if card === 'stern'}
+                            <img src={stern} alt="stern" class="content w-44 h-44 object-cover" draggable="false" style="filter: drop-shadow(0px 0px 15px #40a1e8);">
+                            {:else if card === 'krone'}
+                            <img src={krone} alt="krone" class="content w-44 h-44 object-cover" draggable="false" style="filter: drop-shadow(0px 0px 10px #fbb957);">
+                            {:else if card === 'kleeblatt'}
+                            <img src={kleeblatt} alt="kleeblatt" class="content w-36 h-36 object-cover" draggable="false" style="filter: drop-shadow(0px 0px 10px #53d664);">
+                            {:else if card === 'hufeisen'}
+                            <img src={hufeisen} alt="hufeisen" class="content w-44 h-44 object-cover" draggable="false" style="filter: drop-shadow(0px 0px 15px #a2a2a2);">
+                            {:else if card === 'mond'}
+                            <img src={mond} alt="mond" class="content w-44 h-44 object-cover" draggable="false" style="filter: drop-shadow(0px 0px 10px #e4b936);">
+                            {:else if card === 'ziel'}
+                            <img src={ziel} alt="ziel" draggable="false" class="w-44 h-44">
+                            {:else}
+                            <img src={x} alt="x" draggable="false" class="w-44 h-44">
+                            {/if}
+                        </div>
+                    </div>
+                {/each}
+                </div>
+                <div class="buttons flex justify-evenly items-center">
+                    <button on:click={() => spin(1)} class="btnCustom w-52 h-14 text-2xl" disabled={drawButtonsDisabled[1]}>Draw</button>
+                    <button on:click={() => spin(2)} class="btnCustom w-52 h-14 text-2xl" disabled={drawButtonsDisabled[2]}>Draw</button>
+                </div>
+            </div>
+            {#if !isGameStarting}
+            <div class="w-1/4">
+                <div class="points-table flex flex-wrap items-center justify-center">
+                    {#each pointsCriteria as criterion, i}
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
+                    <div class="box rounded-xl cursor-pointer w-48 h-20 m-1 mx-2 flex justify-center items-center relative" on:click={() => handleCriteriaClick(i)} class:shine={criterion.fulfilled} class:used={criterion.used}>
+                        {criterion.name}
+                        <span class="overlay invisible absolute w-full h-full top-1/2 left-1/2 flex items-center justify-center font-bold" class:visible={criterion.used}>
+                            {points[i + 1]}
+                        </span>
+                    </div>
+                    {#if i % 2 !== 0 && i !== pointsCriteria.length - 1}
+                        <hr class="line-glow my-3">
+                    {/if}
                     {/each}
-                    </div>
-                </div>
-            </header>
-            <div class="game flex flex-col items-center">
-                <div class="board w-full mt-14">
-                    <div class="cards flex items-center justify-center flex-wrap">
-                        {#each $cards as card, index}
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
-                        <!-- svelte-ignore a11y-no-static-element-interactions -->
-                        <div class="boxCard relative w-32 h-40 my-2 rounded-md cursor-pointer mx-3 lg:w-56 lg:h-80" style="background-color: var(--primaryBg);" class:hold={heldCards[index]} on:click={() => toggleHold(index)}>
-                            <div class="content w-full h-full flex items-center justify-center select-none" class:spinning={spinning}>
-                                {#if card === 'herz'}
-                                <img src={herz} alt="herz" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 15px #d60314);">
-                                {:else if card === 'stern'}
-                                <img src={stern} alt="stern" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 15px #40a1e8);">
-                                {:else if card === 'krone'}
-                                <img src={krone} alt="krone" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 10px #fbb957);">
-                                {:else if card === 'kleeblatt'}
-                                <img src={kleeblatt} alt="kleeblatt" class="content w-28 h-28 object-cover lg:w-36 lg:h-36" draggable="false" style="filter: drop-shadow(0px 0px 10px #53d664);">
-                                {:else if card === 'hufeisen'}
-                                <img src={hufeisen} alt="hufeisen" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 15px #a2a2a2);">
-                                {:else if card === 'mond'}
-                                <img src={mond} alt="mond" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 10px #e4b936);">
-                                {:else if card === 'ziel'}
-                                <img src={ziel} alt="ziel" draggable="false" class="w-28 h-28 lg:w-44 lg:h-44">
-                                {:else}
-                                <img src={x} alt="x" draggable="false" class="w-28 h-28 lg:w-44 lg:h-44">
-                                {/if}
-                            </div>
-                        </div>
-                        {/each}
-                    </div>
-                    <div class="buttons flex justify-evenly items-center mt-14 flex-wrap">
-                        <button on:click={() => spin(1)} class="btnCustom w-52 h-14 text-2xl uppercase" disabled={drawButtonsDisabled[1]}>Draw</button>
-                        <button on:click={() => spin(2)} class="btnCustom w-52 h-14 text-2xl uppercase" disabled={drawButtonsDisabled[2]}>Draw</button>
-                    </div>
-                </div>
-                <div class="criteria flex justify-center items-center mt-10" style="max-width: 800px;">
-                    <div class="points-table flex items-center justify-center flex-wrap">
-                        {#each pointsCriteria as criterion, i}
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
-                        <!-- svelte-ignore a11y-no-static-element-interactions -->
-                        <div class="box rounded-xl cursor-pointer w-32 h-16 m-1 mx-2 flex justify-center items-center relative lg:w-48 lg:h-20" on:click={() => handleCriteriaClick(i)} class:shine={criterion.fulfilled} class:used={criterion.used}>
-                            {criterion.name}
-                            <span class="overlay invisible absolute w-full h-full top-1/2 left-1/2 flex items-center justify-center font-bold" class:visible={criterion.used}>
-                                {pointsValue[i + 1]}
-                            </span>
-                        </div>
-                        {/each}
-                        <span class="mt-3" style="font-size: 12px;">Gesamtpunktzahl möglich: <span class="italic" style="font-size: 12px;">425.000</span></span>
-                    </div>
+                    <span class="mt-3" style="font-size: 12px;">Gesamtpunktzahl möglich: <span class="italic" style="font-size: 12px;">425.000</span></span>
                 </div>
             </div>
             {/if}
             {/if}
         </div>
+        {/if}
     </div>
 </main>
 
-<style lang="postcss">
-    .box { 
-        font-size: clamp(20px,2vw,30px); 
-        border: 5px solid #000;
-        box-shadow: 0 0 .2rem #000, inset 0 0 10px #000; 
-        transition: all 0.1s ease-in-out;
-        background: var(--ghostyBg);
-        cursor: default;
-    }
-    .box.used { 
-        position: relative;
-        opacity: 1;
-        background-color: #666 !important;
-        border: 3px solid #666 !important;
-        transform: scale(1) !important; 
-        box-shadow: 0 0 20px #000,inset 0 0 25px #000 !important; 
-        cursor: default !important;
-    }
-    .overlay.visible {visibility: visible;}
-    .box.shine { 
-        border: 3px solid var(--accentColor);
-        background: var(--accentColor); 
-        cursor: pointer;
-    }
-    .box.shine:hover { 
-        transform: scale(1.05); 
-        box-shadow: 0 0 10px var(--ghostyText),inset 0 0 25px #000; 
-        background: var(--ghostyText);
-    }
-    .box:nth-child(2) { padding-bottom: 5px; }
-    .box:nth-child(5) { padding-bottom: 3px; }
-    .box:nth-child(8) { padding-bottom: 2px; }
-    .box:nth-child(12) { font-size: clamp(15px,1.5vw,23px); }
-    .box:nth-child(11) { font-size: clamp(18px,1.5vw,23px); }
-    .box:nth-child(10) { font-size: clamp(15px,1.5vw,20px); }
-    .box:nth-child(9) { font-size: clamp(13px,1.5vw,18px); }
-
-
-    .boxCard {
-        box-shadow: 0 0 2px var(--accentColor),
-            0 0 5px var(--accentColor),
-            inset 0 0 10px var(--accentColor); 
-    }
-    .boxCard.hold {
-        box-shadow: 0 0 2px var(--accentBlue),
-            0 0 5px var(--accentBlue),
-            inset 0 0 10px var(--accentBlue); 
-    }
+<style class="postcss">
     .overlay { 
         transform: translate(-50%,-50%); 
         backdrop-filter: blur(20px); 
@@ -441,9 +393,9 @@
     }
     .btnCustom[disabled] {
         opacity: 0.4;
-        background-color: var(--ghostyBg); 
-        color: var(--ghostyText); 
-        cursor: not-allowed;
+        background-color: var(--ghostyBg); /* Graue Hintergrundfarbe */
+        color: var(--ghostyText); /* Graue Schriftfarbe */
+        cursor: not-allowed; /* Cursor nicht erlaubt */
     }
     .btnCustom[disabled]::before {
         content: '';
@@ -465,16 +417,73 @@
         border-radius: 10px;
         z-index: -1;
     }
+    .container { min-height: 800px; }
     .btnCustom {
         position: relative;
-        border: 5px solid #000;
-        box-shadow: 0 0 .2rem #000, inset 0 0 10px #000; 
         padding: 5px 50px;
-        background-color: var(--accentColor);
-        border-radius: 15px;
+        background-color: var(--ghostyBg);
+        border-radius: 5px;
         font-weight: bold;
         text-align: center;
         overflow: hidden;
     }
     :where(.btnCustom) span { color: var(--ghostyText); position: relative; }
+    .goal-points { height: 45%; }
+    .cards { min-height: 400px; }
+    .boxCard {
+        box-shadow: 0 0 2px var(--accentColor),
+            0 0 5px var(--accentColor),
+            inset 0 0 10px var(--accentColor); 
+    }
+    .boxCard.hold {
+        box-shadow: 0 0 2px var(--accentBlue),
+            0 0 5px var(--accentBlue),
+            inset 0 0 10px var(--accentBlue); 
+    }
+    .content { font-size: 100px; }
+    .box { 
+        font-size: 40px; 
+        border: 5px solid #000;
+        box-shadow: 0 0 .2rem #000, inset 0 0 10px #000; 
+        transition: all 0.1s ease-in-out;
+        background: var(--ghostyBg);
+        cursor: default;
+    }
+    .box.used { 
+        position: relative;
+        opacity: 1;
+        background-color: #666 !important;
+        border: 3px solid #666 !important;
+        transform: scale(1) !important; 
+        box-shadow: 0 0 20px #000,inset 0 0 25px #000 !important; 
+        cursor: default !important;
+    }
+    .overlay.visible {visibility: visible;}
+    .box.shine { 
+        border: 3px solid var(--accentColor);
+        background: var(--accentColor); 
+        cursor: pointer;
+    }
+    .box.shine:hover { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 10px var(--ghostyText),inset 0 0 25px #000; 
+        background: var(--ghostyText);
+    }
+    .box:nth-child(2) { padding-bottom: 5px; }
+    .box:nth-child(7) { padding-bottom: 10px; }
+    .box:nth-child(8) { padding-bottom: 2px; }
+    .box:nth-child(13) { font-size: 20px; }
+    .box:nth-child(14) { font-size: 25px; }
+    .box:nth-child(16) { font-size: 28px; }
+    .box:nth-child(17) { font-size: 26px; }
+    .line-glow {
+        width: 100%;height: 2px;
+        border: none;outline: none;
+        box-shadow: 0 0 .2rem var(--accentColor),
+            0 0 2px var(--textColorBrighter),
+            0 0 5px var(--accentColor),
+            0 0 5px var(--accentColor),
+            0 0 20px var(--accentColor),
+            inset 0 0 10px var(--accentColor); 
+    }
 </style>
