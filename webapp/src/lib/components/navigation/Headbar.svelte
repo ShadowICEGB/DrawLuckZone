@@ -42,7 +42,7 @@
         <div class="navElement flex justify-between items-center px-6 w-screen">
             <div class="trail w-1/2 relative h-16 flex items-center rounded-l-2xl">
                 <div class="flex items-center">
-                    <button class="lg:hidden" on:click={openSidebar}>
+                    <button on:click={openSidebar}>
                         <span>
                             <svg viewBox="0 0 100 80" class="fill-token w-4 h-4" style="background-color: #fff;">
                                 <rect width="100" height="20"></rect>
