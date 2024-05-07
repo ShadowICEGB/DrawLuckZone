@@ -2,15 +2,16 @@
     import { getDrawerStore, AppRail, Drawer, popup, type DrawerSettings, type PopupSettings } from "@skeletonlabs/skeleton";
     const drawerStore = getDrawerStore();
     const closeSidebar = () => drawerStore.close();
+    closeSidebar();
 	import { goto } from "$app/navigation";
     import SpinLuckZone from '$lib/images/logos/SpinLuckZone.png';
 	import { onMount } from "svelte";
 
-    let style: string = 'lg:block max-lg:hidden';
+    let style: string = 'hidden invisible';
 
     // Check if Drawer is open
     $: isOpen = $drawerStore.open;
-    $: if (isOpen) {style = '';} else {style = 'lg:block max-lg:hidden';}
+    $: if (isOpen) {style = 'block visible';} else {style = 'hidden invisible';}
 
     // Toggle Sublist
     let indexSubList: boolean[] = [true, false, false];
@@ -75,7 +76,7 @@
     });
 </script>
 
-<div class="sidebar ${style} overflow-hidden ml-3 py-4 h-full relative rounded-2xl z-50" style="background: var(--primaryBg);">
+<div class="sidebar hidden invisible overflow-hidden ml-3 py-4 h-full relative rounded-2xl z-50" style="background: var(--primaryBg);" class:open={isOpen}>
     <AppRail width="w-64" border="rounded-2xl" background="" >
         <div class="w-full h-full flex flex-col justify-between items-center">
             <nav>
@@ -86,21 +87,21 @@
                 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
                 <ul class="mt-8">
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[0]} on:click={() => toggleActive(0)}>
+                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[0]} on:click={() => {toggleActive(0); closeSidebar()}}>
                         <a href="/" class="w-full h-full pl-3 py-2 flex items-center">
                             <i class="fa-regular fa-lemon w-7" style="font-size: 20px;" draggable="false"></i>
                             <span>Homepage</span>
                         </a>
                     </li>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[1]} on:click={() => toggleActive(1)}>
+                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[1]} on:click={() => {toggleActive(1); closeSidebar()}}>
                         <a href="/game" class="w-full h-full pl-3 py-2 flex items-center">
                             <i class="fa-regular fa-chess-knight w-7" style="font-size: 20px;" draggable="false"></i>
                             <span>Game</span>
                         </a>
                     </li>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[2]} on:click={() => toggleActive(2)}>
+                    <li class="navItem rounded-xl flex justify-center items-center my-2 transition-all" class:active={activeIndex[2]} on:click={() => {toggleActive(2); closeSidebar()}}>
                         <a href="/information/stats/leaderboard" class="w-full h-full pl-3 py-2 flex items-center">
                             <i class="fa-regular fa-clipboard w-7" style="font-size: 20px;margin-bottom: 2px;" draggable="false"></i>
                             <span>Leaderboard</span>
@@ -122,11 +123,11 @@
                         <span class="line absolute w-1 rounded-xl" style="background: var(--secondaryBg);left: 6px;margin-top:4px;height: 62%;" class:hidden={!indexSubList[0]}></span>
                         <ul class="subList relative pl-10" class:hidden={!indexSubList[0]}>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[3]}>
-                                <a href="/information/stats/achievements" class="w-full h-full pl-2 py-2" on:click={() => toggleActive(3)}>Achievements</a>
+                                <a href="/information/stats/achievements" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(3); closeSidebar()}}>Achievements</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-7 h-1 rounded-xl" style="background: var(--secondaryBg);left: -34px;" class:hidden={!indexSubList[0]}></span>
                             </li>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[4]}>
-                                <a href="/information/profile" class="w-full h-full pl-2 py-2" on:click={() => toggleActive(4)}>Profile</a>
+                                <a href="/information/profile" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(4); closeSidebar()}}>Profile</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-7 h-1 rounded-xl" style="background: var(--secondaryBg);left: -34px;" class:hidden={!indexSubList[0]}></span>
                             </li>
                         </ul>
@@ -143,11 +144,11 @@
                         <span class="line absolute w-1 rounded-xl" style="background: var(--secondaryBg);left: 6px;margin-top:4px;height: 62%;" class:hidden={!indexSubList[1]}></span>
                         <ul class="subList relative pl-10" class:hidden={!indexSubList[1]}>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[5]}>
-                                <a href="/information/changelog" class="w-full h-full pl-2 py-2" on:click={() => toggleActive(5)}>Changelog</a>
+                                <a href="/information/changelog" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(5); closeSidebar()}}>Changelog</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-7 h-1 rounded-xl" style="background: var(--secondaryBg);left: -34px;" class:hidden={!indexSubList[1]}></span>
                             </li>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[6]}>
-                                <a href="/information/contact/developer" class="w-full h-full pl-2 py-2" on:click={() => toggleActive(6)}>Developer</a>
+                                <a href="/information/contact/developer" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(6); closeSidebar()}}>Developer</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-7 h-1 rounded-xl" style="background: var(--secondaryBg);left: -34px;" class:hidden={!indexSubList[1]}></span>
                             </li>
                         </ul>
@@ -164,11 +165,11 @@
                         <span class="line absolute w-1 rounded-xl" style="background: var(--secondaryBg);left: 8px;margin-top:4px;height: 62%;" class:hidden={!indexSubList[2]}></span>
                         <ul class="subList relative pl-10" class:hidden={!indexSubList[2]}>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[7]}>
-                                <a href="/information/contact/ticket" class="w-full h-full pl-2 py-2" on:click={() => toggleActive(7)}>Kontakt</a>
+                                <a href="/information/contact/ticket" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(7); closeSidebar()}}>Kontakt</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-6 h-1 rounded-xl" style="background: var(--secondaryBg);left: -30px;" class:hidden={!indexSubList[2]}></span>
                             </li>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[8]}>
-                                <a href="/information/contact/impressum" class="w-full h-full pl-2 py-2" on:click={() => toggleActive(8)}>Impressum</a>
+                                <a href="/information/contact/impressum" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(8); closeSidebar()}}>Impressum</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-6 h-1 rounded-xl" style="background: var(--secondaryBg);left: -30px;" class:hidden={!indexSubList[2]}></span>
                             </li>
                         </ul>
@@ -186,6 +187,7 @@
 </div>
 
 <style lang="postcss">
+    .sidebar.open { display: block; visibility: visible; }
     li.active {
         background-color: var(--accentColor);
         box-shadow: 0px 0px 7px 0px var(--accentColor);
