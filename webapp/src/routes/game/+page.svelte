@@ -267,11 +267,11 @@
 </script>
 
 <main>
-    <div class="container -mt-8">
-        <h1 class="text-center mb-5 tracking-wider flex items-center justify-center flex-wrap" style="font-size: clamp(30px, 4vw, 50px);">
-            <img src="{logo}" alt="logo" class="w-20">
+    <div class="container -mt-14">
+        <h1 class="text-center mb-5 tracking-wider flex items-center justify-center flex-wrap heading">
+            <img src="{logo}" alt="logo" class="w-20 logoImg">
             DrawLuckZone
-            <img src="{logo}" alt="logo" class="w-20">
+            <img src="{logo}" alt="logo" class="w-20 logoImg">
         </h1>
         <div class="gameBoard">
             {#if gameFinished}
@@ -366,6 +366,12 @@
 </main>
 
 <style lang="postcss">
+    .heading { font-size: clamp(30px, 4vw, 50px); }
+    @media screen and (max-width: 409px) {.heading { font-size: 20px; }}
+    @media screen and (max-width: 470px) {.logoImg { width: 50px; }}
+    @media screen and (max-width: 479px) {.btnCustom:last-child { margin-top: 10px; }}
+    @media screen and (max-width: 328px) {.heading img { display: none; } .heading {margin-top: 50px;}}
+
     .box { 
         font-size: clamp(20px,2vw,30px); 
         border: 5px solid #000;

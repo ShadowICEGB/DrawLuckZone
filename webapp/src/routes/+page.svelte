@@ -4,12 +4,12 @@
     import { goto } from '$app/navigation';
     import anleitungBG from '$lib/images/other/anleitung.png';
     import leaderboardBG from '$lib/images/other/leaderboard.png';
-    import profileBG from '$lib/images/other/profileBG.jpg';
+    import tutorialBG from '$lib/images/other/tutorial.png';
 
     const arrayBox = [
         {name:'spielanleitung',text:'Anleitung',link:'/information/guide',imgBG:anleitungBG},
         {name:'Leaderboard',text:'Highscoretabelle',link:'/information/stats/leaderboard',imgBG:leaderboardBG},
-        {name:'Spielerprofil',text:'Persönliches Profil',link:'/information/profile',imgBG:profileBG}
+        {name:'Spieltutorial',text:'Tutorial',link:'/information/tutorial',imgBG:tutorialBG}
     ];
 </script>
 

@@ -50,3 +50,15 @@ export type TypePointsCriteria = {
     11: number, 
     12: number
 }[]
+
+
+
+
+
+export type LeaderboardStats = {
+    place: string;
+    short: string;
+    name: string;
+    highsore: string;
+    img: string;
+}[]

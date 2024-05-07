@@ -22,9 +22,12 @@
         if (isSidebarOpen) {
             drawerStore.close();
             isSidebarOpen = false;
+            console.log("sidebar closed");
+            
         } else {
             drawerStore.open(drawerSettings);
             isSidebarOpen = true;
+            console.log("sidebar open");
         }
     }
 
