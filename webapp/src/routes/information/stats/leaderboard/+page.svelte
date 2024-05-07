@@ -5,16 +5,16 @@
     import user from '$lib/images/other/profileBG.jpg';
 
     let testArray: LeaderboardStats = [
-        {place:'2',short:'nd',name:'DanRuffy',highsore:'1.200.000',img:user},
-        {place:'1',short:'st',name:'ShadowICE',highsore:'1.600.800',img:user},
-        {place:'3',short:'rd',name:'bastimzt',highsore:'800.000',img:user},
+        {place:'2',short:'nd',name:'',highsore:'',img:user},
+        {place:'1',short:'st',name:'',highsore:'',img:user},
+        {place:'3',short:'rd',name:'',highsore:'',img:user},
         // 4th
-        {place:'4',short:'th',name:'hosenmatz',highsore:'300.000',img:user},
-        {place:'5',short:'th',name:'pickme',highsore:'250.000',img:user},
-        {place:'6',short:'th',name:'pipsquek',highsore:'',img:user},
-        {place:'7',short:'th',name:'LELELELEL',highsore:'224.000',img:user},
-        {place:'8',short:'th',name:'TOLOOONNGGGG',highsore:'180.000',img:user},
-        {place:'9',short:'th',name:'Keck',highsore:'40.000',img:user}
+        {place:'4',short:'th',name:'',highsore:'',img:user},
+        {place:'5',short:'th',name:'',highsore:'',img:user},
+        {place:'6',short:'th',name:'',highsore:'',img:user},
+        {place:'7',short:'th',name:'',highsore:'',img:user},
+        {place:'8',short:'th',name:'',highsore:'',img:user},
+        {place:'9',short:'th',name:'',highsore:'',img:user}
     ];
 </script>
 
