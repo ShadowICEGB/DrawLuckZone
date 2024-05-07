@@ -1,4 +1,4 @@
-# DrawLuckZone
+# DrawLuckZone - *https://spinluckzone.netlify.app/*
 
 DrawLuckZone is a luck-based, wager-free web app game where players strive to achieve as many successful outcomes as possible in each of the five rounds. The game is entirely fictional and does not involve any real betting.
 
