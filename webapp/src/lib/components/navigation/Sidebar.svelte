@@ -2,16 +2,15 @@
     import { getDrawerStore, AppRail, Drawer, popup, type DrawerSettings, type PopupSettings } from "@skeletonlabs/skeleton";
     const drawerStore = getDrawerStore();
     const closeSidebar = () => drawerStore.close();
-    closeSidebar();
 	import { goto } from "$app/navigation";
     import SpinLuckZone from '$lib/images/logos/SpinLuckZone.png';
 	import { onMount } from "svelte";
 
-    let style: string = 'hidden invisible';
+    let style: string = 'hidden';
 
     // Check if Drawer is open
     $: isOpen = $drawerStore.open;
-    $: if (isOpen) {style = 'block visible';} else {style = 'hidden invisible';}
+    $: if (isOpen) {style = 'block';} else {style = 'hidden';}
 
     // Toggle Sublist
     let indexSubList: boolean[] = [true, false, false];
@@ -76,7 +75,7 @@
     });
 </script>
 
-<div class="sidebar hidden invisible overflow-hidden ml-3 py-4 h-full relative rounded-2xl z-50" style="background: var(--primaryBg);" class:open={isOpen}>
+<div class="sidebar {style} overflow-hidden ml-3 py-4 h-full relative rounded-2xl z-50" style="background: var(--primaryBg);" class:open={isOpen}>
     <AppRail width="w-64" border="rounded-2xl" background="" >
         <div class="w-full h-full flex flex-col justify-between items-center">
             <nav>
@@ -127,7 +126,7 @@
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-7 h-1 rounded-xl" style="background: var(--secondaryBg);left: -34px;" class:hidden={!indexSubList[0]}></span>
                             </li>
                             <li class="mt-3 relative flex navItem rounded-xl transition-all" class:active={activeIndex[4]}>
-                                <a href="/information/profile" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(4); closeSidebar()}}>Profile</a>
+                                <a href="/information/tutorial" class="w-full h-full pl-2 py-2" on:click={() => {toggleActive(4); closeSidebar()}}>Tutorial</a>
                                 <span class="line absolute top-1/2 -translate-y-1/2 w-7 h-1 rounded-xl" style="background: var(--secondaryBg);left: -34px;" class:hidden={!indexSubList[0]}></span>
                             </li>
                         </ul>
@@ -186,8 +185,8 @@
     </AppRail>
 </div>
 
-<style lang="postcss">
-    .sidebar.open { display: block; visibility: visible; }
+<style lang="css">
+    .sidebar.open { display: block; }
     li.active {
         background-color: var(--accentColor);
         box-shadow: 0px 0px 7px 0px var(--accentColor);

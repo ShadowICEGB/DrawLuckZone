@@ -1,11 +1,11 @@
 <script lang="ts">
-    import user from "$lib/images/placeholder/user.png";
+    import imgDev from "$lib/images/placeholder/user.png";
     import type { ContentType } from "$lib/types";
     
     let contentArray: ContentType[] = [
         {
             "dev": "Noah Trier", // devname
-            "img": "", // devimg
+            "img": imgDev, // devimg
             "version": "V 0.0.0", // application version
             "role": "Admin", // devrole
             "content": "release", // release, beta, alpha, early access, hotfix, security
@@ -21,7 +21,7 @@
         },
         {
             "dev": "Noah Trier",
-            "img": "",
+            "img": imgDev,
             "version": "V 0.0.1",
             "role": "Admin",
             "content": "release",
@@ -38,7 +38,7 @@
         },
         {
             "dev": "Noah Trier",
-            "img": "",
+            "img": imgDev,
             "version": "V 0.0.2",
             "role": "Admin",
             "content": "release",
@@ -54,7 +54,7 @@
         },
         {
             "dev": "Noah Trier",
-            "img": "",
+            "img": imgDev,
             "version": "V 0.0.3",
             "role": "Admin",
             "content": "hotfix",
@@ -72,7 +72,7 @@
         },
         {
             "dev": "Noah Trier",
-            "img": "",
+            "img": imgDev,
             "version": "V 0.1.3",
             "role": "Admin",
             "content": "release",
@@ -88,13 +88,30 @@
         },
         {
             "dev": "Noah Trier",
-            "img": "",
+            "img": imgDev,
             "version": "V 0.1.4",
             "role": "Admin",
             "content": "release",
             "status": "done",
             "headline": "Kontakt Page 🆘",
             "textContent": "Die Kontakt Route wurde hinzugefügt und mit Inhalten befüllt. Ab sofort kann man ein Formular ausfüllen und den Support kontaktieren. ",
+            "tags": { 
+                "MVP": "MVP",
+                "Ready": "Ready",
+                "Beta": "Release",
+                "Security": "Secure",
+                "Enhancement": "Enhancement",
+            }
+        },
+        {
+            "dev": "Noah Trier",
+            "img": imgDev,
+            "version": "V 0.1.8",
+            "role": "Admin",
+            "content": "release",
+            "status": "done",
+            "headline": "Leaderboard Design 🔥",
+            "textContent": "Die Leaderboard Route wurde erstellt und hinzugefügt. Dort werden alle Highscore der Top 10 abgebildet.",
             "tags": { 
                 "MVP": "MVP",
                 "Ready": "Ready",
@@ -113,7 +130,7 @@
         <div class="box flex flex-col mt-10 p-4 rounded-xl">
             <div class="headline flex justify-between items-center mb-5">
                 <div class="dev flex">
-                    <img src={user} alt="userIMG" class="w-12 h-12 mt-5" style="border-radius: 50%;">
+                    <img src="{content.img}" alt="userIMG" class="w-12 h-12 mt-5" style="border-radius: 50%;" draggable="false">
                     <div class="txt flex items-center ml-3">
                         <h2 class="font-bold" style="font-size: 16px;">{content.dev}</h2>
                         <p class="py-1 px-3 ml-1 rounded-xl lg:ml-3" style="background-color: var(--ghostyBg);color: var(--ghostyText);">{content.role}</p>
