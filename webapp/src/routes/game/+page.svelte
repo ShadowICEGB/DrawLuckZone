@@ -315,24 +315,24 @@
                         {#each $cards as card, index}
                         <!-- svelte-ignore a11y-click-events-have-key-events -->
                         <!-- svelte-ignore a11y-no-static-element-interactions -->
-                        <div class="boxCard relative w-32 h-40 my-2 rounded-md cursor-pointer mx-3 lg:w-56 lg:h-80" style="background-color: var(--primaryBg);" class:hold={heldCards[index]} on:click={() => toggleHold(index)}>
+                        <div class="boxCard relative w-32 h-40 my-2 rounded-md cursor-pointer mx-3 lg:w-40 lg:h-48" style="background-color: var(--primaryBg);" class:hold={heldCards[index]} on:click={() => toggleHold(index)}>
                             <div class="content w-full h-full flex items-center justify-center select-none" class:spinning={spinning}>
                                 {#if card === 'herz'}
-                                <img src={herz} alt="herz" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 15px #d60314);">
+                                <img src={herz} alt="herz" class="content w-28 h-28 object-cover lg:w-32 lg:h-32" draggable="false" style="filter: drop-shadow(0px 0px 15px #d60314);">
                                 {:else if card === 'stern'}
-                                <img src={stern} alt="stern" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 15px #40a1e8);">
+                                <img src={stern} alt="stern" class="content w-28 h-28 object-cover lg:w-32 lg:h-32" draggable="false" style="filter: drop-shadow(0px 0px 15px #40a1e8);">
                                 {:else if card === 'krone'}
-                                <img src={krone} alt="krone" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 10px #fbb957);">
+                                <img src={krone} alt="krone" class="content w-28 h-28 object-cover lg:w-32 lg:h-32" draggable="false" style="filter: drop-shadow(0px 0px 10px #fbb957);">
                                 {:else if card === 'kleeblatt'}
-                                <img src={kleeblatt} alt="kleeblatt" class="content w-28 h-28 object-cover lg:w-36 lg:h-36" draggable="false" style="filter: drop-shadow(0px 0px 10px #53d664);">
+                                <img src={kleeblatt} alt="kleeblatt" class="content w-28 h-28 object-cover lg:w-28 lg:h-28" draggable="false" style="filter: drop-shadow(0px 0px 10px #53d664);">
                                 {:else if card === 'hufeisen'}
-                                <img src={hufeisen} alt="hufeisen" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 15px #a2a2a2);">
+                                <img src={hufeisen} alt="hufeisen" class="content w-28 h-28 object-cover lg:w-32 lg:h-32" draggable="false" style="filter: drop-shadow(0px 0px 15px #a2a2a2);">
                                 {:else if card === 'mond'}
-                                <img src={mond} alt="mond" class="content w-28 h-28 object-cover lg:w-44 lg:h-44" draggable="false" style="filter: drop-shadow(0px 0px 10px #e4b936);">
+                                <img src={mond} alt="mond" class="content w-28 h-28 object-cover lg:w-32 lg:h-32" draggable="false" style="filter: drop-shadow(0px 0px 10px #e4b936);">
                                 {:else if card === 'ziel'}
-                                <img src={ziel} alt="ziel" draggable="false" class="w-28 h-28 lg:w-44 lg:h-44">
+                                <img src={ziel} alt="ziel" draggable="false" class="w-28 h-28 lg:w-32 lg:h-32">
                                 {:else}
-                                <img src={x} alt="x" draggable="false" class="w-28 h-28 lg:w-44 lg:h-44">
+                                <img src={x} alt="x" draggable="false" class="w-28 h-28 lg:w-32 lg:h-32">
                                 {/if}
                             </div>
                         </div>
