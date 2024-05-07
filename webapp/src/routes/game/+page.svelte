@@ -267,7 +267,7 @@
 </script>
 
 <main>
-    <div class="container -mt-8">
+    <div class="container -mt-14">
         <h1 class="text-center mb-5 tracking-wider flex items-center justify-center flex-wrap" style="font-size: clamp(30px, 4vw, 50px);">
             <img src="{logo}" alt="logo" class="w-20">
             DrawLuckZone
