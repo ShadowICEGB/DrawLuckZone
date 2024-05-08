@@ -15,6 +15,9 @@
 
 <main>
     <div class="container">
+        <div class="attention relative left-1/2 -translate-x-1/2 p-5 flex justify-center items-center rounded-xl" style="background-color: var(--ghostyBg);">
+            <p class="uppercase font-bold" style="color: var(--ghostyText);">Aktuell alles nur Mockup❗</p>
+        </div>
         <div class="greetingBox mt-20 rounded-3xl p-12 relative">
             <div class="content relative">
                 <h1 class="font-bold flex items-center" style="font-size: clamp(16px,4vw,30px);color: var(--accentColor);">
