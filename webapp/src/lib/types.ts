@@ -62,3 +62,13 @@ export type LeaderboardStats = {
     highsore: string;
     img: string;
 }[]
+
+
+
+
+export type GameStats = {
+    playername: string,
+    pointsPerRound: string,
+    totalPoints: string,
+    spinning: boolean
+}
